@@ -17,7 +17,7 @@ interface PuppyDoc extends mongoose.Document {
   breed: string;
   size: string;
   dob: string;
-}
+};
 
 const puppySchema = new mongoose.Schema({
   name: {
@@ -52,4 +52,4 @@ Puppy.build({
   dob: '2004'
 });
 
-export { Puppy }
+export { Puppy };
