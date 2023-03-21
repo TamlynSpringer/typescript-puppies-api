@@ -4,19 +4,18 @@ interface IPuppy {
   name: string;
   breed: string;
   size: string;
-  dob: string;
+  age: number;
 };
 
 interface PuppyModelInterface extends mongoose.Model<PuppyDoc> {
   build(attr: IPuppy): PuppyDoc
 };
 
-
 interface PuppyDoc extends mongoose.Document {
   name: string;
   breed: string;
   size: string;
-  dob: string;
+  age: number;
 };
 
 const puppySchema = new mongoose.Schema({
@@ -32,12 +31,11 @@ const puppySchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  dob: {
-    type: String,
+  age: {
+    type: Number,
     required: true
   }
 });
-
 
 puppySchema.statics.build = (attr: IPuppy) => {
   return new Puppy(attr)
@@ -49,7 +47,7 @@ Puppy.build({
   name: 'Bianca',
   breed: 'Jack Russell',
   size: 'small',
-  dob: '2004'
+  age: 17
 });
 
 export { Puppy };

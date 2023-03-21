@@ -19,11 +19,31 @@ router.get('/api/puppies/:id', async (req: Request, res: Response) => {
 });
 
 router.post('/api/puppies', async (req: Request, res: Response) => {
-  const { name, breed, size, dob } = req.body;
-  const puppy = Puppy.build({ name, breed, size, dob })
+  console.log(req.body)
+  const { name, breed, size, age } = req.body;
+  const puppy = Puppy.build({ name, breed, size, age })
   await puppy.save();
   return res.status(201).json(puppy)
 });
+
+// router.post('/api/puppies', async (req: Request, res: Response): Promise<void> => {
+//   try {
+//     const body = req.body as Pick<IPuppy, 'name' | 'breed' | 'size' | 'age'>
+//     const puppy: IPuppy = new Puppy({
+//       name: body.name,
+//       breed: body.breed,
+//       size: body.size,
+//       age: body.age,
+//     })
+//     const newPuppy: IPuppy = await puppy.save();
+//     const allPuppies: IPuppy[] = await Puppy.find();
+//     res
+//       .status(201)
+//       .json({ message: 'Pup added', puppy: newPuppy, puppies: allPuppies })
+//   } catch (error) {
+//     throw error
+//   }
+// })
 
 router.put('/api/puppies/:id', async (req: Request, res: Response) => {
   const id = req.params.id;
